@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def initialize
     super
     @all_ratings = Movie.list_ratings
-    @ratings_ary = []
+#    @ratings_ary = []
   end
 
   def show
