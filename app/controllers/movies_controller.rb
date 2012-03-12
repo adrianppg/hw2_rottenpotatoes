@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     @ratings_ary = @ratings ? @ratings.keys : @all_ratings
 #@all_ratings=['G','PG','PG-13','R']
 #@ratings_ary=['G','PG']
-    @movies = Movie.order(@sort_by) 
+    @movies = Movie.where(:rating => @ratings_ary)order(@sort_by) 
   end
 
   def new
