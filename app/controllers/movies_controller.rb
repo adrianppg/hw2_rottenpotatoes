@@ -17,6 +17,9 @@ class MoviesController < ApplicationController
     @ratings = params[:ratings]
     @ratings_ary = @ratings ? @ratings.keys : @all_ratings
     redirect = false
+    if (params[:ratings].is_a? Hash)
+      params[:ratings] = params[:ratings].keys
+    end
     if params.has_key?(:ratings)
       session[:ratings] = params[:ratings]
     elsif params[:commit] == "Refresh" || !(session.has_key? :ratings) 
@@ -25,7 +28,6 @@ class MoviesController < ApplicationController
       params[:ratings] = session[:ratings]
       redirect = true unless session[:ratings].nil?
     end
-    
     if (params.has_key?(:sort_by))
       session[:sort_by] = params[:sort_by]
     else
