@@ -16,9 +16,33 @@ class MoviesController < ApplicationController
     @sort_by = params[:sort_by]
     @ratings = params[:ratings]
     @ratings_ary = @ratings ? @ratings.keys : @all_ratings
+    handleSession()
 #@all_ratings=['G','PG','PG-13','R']
 #@ratings_ary=['G','PG']
 @movies = Movie.where(:rating => @ratings_ary).order(@sort_by) 
+  end
+
+  def handleSession
+    redirect = false
+    if params.has_key?(:ratings)
+      session[:ratings] = params[:ratings]
+    elsif params[:commit] == "Refresh" || !(session.has_key? :ratings) 
+        params[:ratings] = Movie.list_ratings
+    else
+      params[:ratings] = session[:ratings]
+      redirect = true unless session[:ratings].nil?
+    end
+    
+    if (params.has_key?(:sorted))
+      session[:sorted] = params[:sorted]
+    else
+      params[:sorted] = session[:sorted]
+      redirect = true
+    end
+    
+    if (redirect)
+    redirect_to movies_path(params)
+    end
   end
 
   def new
