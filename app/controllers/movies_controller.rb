@@ -26,6 +26,7 @@ handleSessionLight
     if params.has_key?(:ratings)
       session[:ratings] = params[:ratings]
     end
+      session[:ratings] = params[:ratings]
   end
 
   def handleSession
