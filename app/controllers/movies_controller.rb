@@ -33,10 +33,10 @@ class MoviesController < ApplicationController
       redirect = true unless session[:ratings].nil?
     end
     
-    if (params.has_key?(:sorted))
-      session[:sorted] = params[:sorted]
+    if (params.has_key?(:sort_by))
+      session[:sort_by] = params[:sort_by]
     else
-      params[:sorted] = session[:sorted]
+      params[:sort_by] = session[:sort_by]
       redirect = true
     end
     
