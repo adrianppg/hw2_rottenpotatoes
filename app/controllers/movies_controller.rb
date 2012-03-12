@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def initialize
     super
-    @all_ratings = Movie.list_ratings
+#@all_ratings = Movie.list_ratings
   end
   def show
     id = params[:id] # retrieve movie ID from URI route
@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 #    @all_ratings=Movie.list_ratings
     @all_ratings=['G','PG','PG-13','R']
 #@ratings = params[:ratings]
-    @rating
+    @rating_ary=['G','PG']
 #@ratings_ary = @ratings ? @ratings.keys : @all_ratings
     @movies = Movie.order(@sort_by) 
   end
