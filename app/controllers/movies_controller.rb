@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #tu madre
+    #tu madre2
     @sort_by = params[:sort_by] @@ session[:sort_by]
 #    @ratings = params[:ratings]
     @ratings_ary = @ratings ? @ratings.keys : @all_ratings
